@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hani Wisata — Pemesanan Tiket Pesawat, Kereta Api (KAI) &amp; Hotel Korporat</title>
+  <meta name="description" content="Layanan resmi pemesanan tiket pesawat domestik & internasional, Kereta Api Eksekutif (KAI), reservasi hotel, dan perjalanan dinas korporat Hani Wisata. Gedung 88 Lantai 9A, Kota Casablanca, Jakarta Selatan." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-paper: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F1F5F9;
+      --ink-primary: #0F172A;
+      --ink-secondary: #334155;
+      --ink-muted: #64748B;
+      --brand-navy: #0F3D75;
+      --brand-navy-dark: #0A2E5C;
+      --brand-plum: #6B2D5C;
+      --accent-cobalt: #1D4ED8;
+      --accent-emerald: #0D6847;
+      --accent-emerald-dark: #095237;
+      --accent-amber: #D97706;
+      --border-line: #CBD5E1;
+      --border-soft: #E2E8F0;
+      --font-brand: "Mongolian Baiti", "Georgia", "Times New Roman", serif;
+      --font-sans: "Plus Jakarta Sans", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "JetBrains Mono", "Consolas", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-paper);
+      color: var(--ink-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .mono-code {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+
+    /* Top Institutional Strip */
+    .top-bar {
+      background: var(--ink-primary);
+      color: #E2E8F0;
+      font-size: 12px;
+      border-bottom: 1px solid #1E293B;
+    }
+
+    .top-bar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .top-bar-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .header-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand-logo {
+      height: 46px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-family: var(--font-brand);
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--ink-primary);
+    }
+
+    .brand-tagline {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--ink-secondary);
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--brand-navy);
+    }
+
+    .header-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary-navy {
+      appearance: none;
+      background: var(--brand-navy);
+      color: #FFFFFF;
+      border: 1px solid var(--brand-navy-dark);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease;
+    }
+
+    .btn-primary-navy:hover {
+      background: var(--brand-navy-dark);
+    }
+
+    .btn-whatsapp-emerald {
+      appearance: none;
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+      border: 1px solid var(--accent-emerald-dark);
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 11px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease;
+    }
+
+    .btn-whatsapp-emerald:hover {
+      background: var(--accent-emerald-dark);
+    }
+
+    .btn-outline {
+      appearance: none;
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      border: 1px solid var(--border-line);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-subtle);
+      border-color: var(--ink-secondary);
+    }
+
+    /* Hero + Booking Split Section */
+    .hero-section {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+      border-bottom: 1px solid var(--border-line);
+      padding: 48px 24px 60px;
+    }
+
+    .hero-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 44px;
+      align-items: start;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--brand-plum);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-title {
+      font-family: var(--font-brand);
+      font-size: clamp(30px, 3.6vw, 44px);
+      font-weight: 700;
+      line-height: 1.16;
+      color: var(--ink-primary);
+      margin-bottom: 18px;
+    }
+
+    .hero-desc {
+      font-size: 15.5px;
+      color: var(--ink-secondary);
+      line-height: 1.68;
+      margin-bottom: 26px;
+    }
+
+    .trust-ledger {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border: 1px solid var(--border-line);
+      background: #FFFFFF;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .trust-cell {
+      padding: 14px 16px;
+      border-right: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .trust-cell:nth-child(2n) {
+      border-right: none;
+    }
+
+    .trust-cell:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    .trust-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-navy);
+      margin-bottom: 2px;
+    }
+
+    .trust-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .office-summary-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-line);
+      border-left: 4px solid var(--brand-navy);
+      border-radius: 6px;
+      padding: 14px 18px;
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+    }
+
+    /* Interactive Booking Card */
+    .booking-panel {
+      background: #FFFFFF;
+      border: 1px solid var(--border-line);
+      border-top: 4px solid var(--brand-navy);
+      border-radius: 10px;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
+
+    .booking-header {
+      padding: 16px 22px;
+      background: #F8FAFC;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .booking-header-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .service-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .service-tab-btn {
+      appearance: none;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border-soft);
+      padding: 11px 8px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+
+    .service-tab-btn:last-child {
+      border-right: none;
+    }
+
+    .service-tab-btn.active {
+      background: var(--brand-navy);
+      color: #FFFFFF;
+    }
+
+    .booking-form-body {
+      padding: 22px;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 95px;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .field-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-wrap label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+    }
+
+    .field-wrap input,
+    .field-wrap select,
+    .field-wrap textarea {
+      width: 100%;
+      padding: 8px 11px;
+      border: 1px solid var(--border-line);
+      border-radius: 6px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--ink-primary);
+      background: #FFFFFF;
+    }
+
+    .field-wrap input,
+    .field-wrap select {
+      height: 38px;
+    }
+
+    .field-wrap input:focus,
+    .field-wrap select:focus,
+    .field-wrap textarea:focus {
+      outline: none;
+      border-color: var(--brand-navy);
+      box-shadow: 0 0 0 3px rgba(15, 61, 117, 0.12);
+    }
+
+    .wa-preview-box {
+      background: #F8FAFC;
+      border: 1px solid var(--border-line);
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 14px;
+      margin-bottom: 16px;
+    }
+
+    .wa-preview-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .wa-preview-text {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-primary);
+      white-space: pre-wrap;
+      line-height: 1.5;
+      max-height: 125px;
+      overflow-y: auto;
+    }
+
+    .booking-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Section Containers */
+    .section-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .section-border {
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section-title {
+      font-family: var(--font-brand);
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+    }
+
+    /* Popular Routes Table */
+    .routes-table-wrap {
+      background: #FFFFFF;
+      border: 1px solid var(--border-line);
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    table.routes-ledger {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    table.routes-ledger th {
+      background: #F8FAFC;
+      color: var(--ink-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    table.routes-ledger td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border-soft);
+      vertical-align: middle;
+    }
+
+    table.routes-ledger tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pill-solid {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 5px;
+      color: #FFFFFF;
+    }
+
+    .pill-plane { background: #1D4ED8; }
+    .pill-train { background: #6D28D9; }
+    .pill-hotel { background: #0D6847; }
+    .pill-amber { background: #D97706; }
+
+    /* Architectural Service Rows */
+    .service-ledger {
+      background: #FFFFFF;
+      border: 1px solid var(--border-line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 80px 1.1fr 1.6fr 200px;
+      gap: 24px;
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border-soft);
+      align-items: start;
+    }
+
+    .service-item:last-child {
+      border-bottom: none;
+    }
+
+    .service-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-navy);
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    /* Steps & Official Bank Info */
+    .procedure-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .steps-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-line);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .step-row:first-child {
+      padding-top: 0;
+    }
+
+    .step-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .bank-card {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      border-radius: 8px;
+      padding: 26px;
+      border-top: 4px solid var(--accent-amber);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--ink-primary);
+      color: #CBD5E1;
+      padding: 52px 24px 34px;
+      border-top: 4px solid var(--brand-navy);
+    }
+
+    .footer-grid {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid #1E293B;
+    }
+
+    .footer-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: #94A3B8;
+      line-height: 1.7;
+    }
+
+    .footer-bottom {
+      max-width: 1240px;
+      margin: 22px auto 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    #toast-banner {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 400;
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+    }
+
+    @media (max-width: 960px) {
+      .hero-container,
+      .section-head,
+      .procedure-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .service-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .form-grid-2,
+      .form-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .service-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-menu {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Institutional Bar -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-group">
+        <span>GEDUNG 88 LANTAI 9A, KOTA CASABLANCA, JAKARTA SELATAN</span>
+        <span class="mono-code">TELEPON KANTOR: 021 28541720</span>
+      </div>
+      <div class="top-bar-group">
+        <span class="mono-code">REKENING RESMI: BANK MANDIRI 1290016512887 (A.N. ASEP RUSWANDI)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-link">
+        <img src="logo_hani.png" onerror="this.onerror=null;this.src='/static/logo_hani.png';" alt="Logo Hani Wisata" class="brand-logo" />
+        <div>
+          <span class="brand-name">Hani Wisata</span>
+          <span class="brand-tagline">Tiket Pesawat, Kereta Api (KAI) &amp; Hotel Korporat</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" aria-label="Navigasi Pelanggan">
+        <a href="#pesan-tiket" class="nav-link">Pesan Tiket</a>
+        <a href="#rute-populer" class="nav-link">Rute &amp; Maskapai</a>
+        <a href="#layanan" class="nav-link">Layanan Kami</a>
+        <a href="#prosedur" class="nav-link">Cara Pemesanan</a>
+        <a href="#kontak" class="nav-link">Kontak Kantor</a>
+      </nav>
+
+      <div class="header-cta-group">
+        <a href="#pesan-tiket" class="btn-primary-navy">Pesan Tiket Sekarang</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section + Live Customer Booking Form -->
+  <section id="pesan-tiket" class="hero-section">
+    <div class="hero-container">
+      <!-- Left Column: Brand Value Proposition -->
+      <div>
+        <span class="hero-badge">BIRO PERJALANAN RESMI &amp; MITRA KORPORAT JAKARTA</span>
+        <h1 class="hero-title">Pemesanan Cepat Tiket Pesawat, Kereta Api Eksekutif &amp; Hotel.</h1>
+        <p class="hero-desc">
+          Hani Wisata melayani pemesanan tiket perjalanan perorangan, rombongan grup, hingga perjalanan dinas kementerian, BUMN, dan perusahaan swasta. Proses penerbitan e-ticket instan, dukungan perubahan jadwal (reschedule), serta fasilitas penagihan faktur korporat terjadwal.
+        </p>
+
+        <div class="trust-ledger">
+          <div class="trust-cell">
+            <div class="trust-title">Penerbitan E-Ticket Instan</div>
+            <div class="trust-sub">Kode booking &amp; nomor tiket resmi langsung terbit</div>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-title">Seluruh Maskapai &amp; KAI</div>
+            <div class="trust-sub">Garuda, Batik, Citilink, Pelita, Lion, KAI Eksekutif</div>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-title">Pemesanan Rombongan</div>
+            <div class="trust-sub">Dukungan banyak penumpang dalam satu faktur</div>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-title">Faktur Korporat (INV A &amp; D)</div>
+            <div class="trust-sub">Fasilitas tagihan jatuh tempo untuk mitra instansi</div>
+          </div>
+        </div>
+
+        <div class="office-summary-box">
+          <div style="font-weight:700; color:var(--ink-primary); margin-bottom:3px;">Kantor Operasional Hani Wisata</div>
+          <div>Gedung 88 Lantai 9A, Kota Casablanca, Jakarta Selatan</div>
+          <div class="mono-code" style="margin-top:4px; font-weight:600; color:var(--brand-navy);">
+            Telp: 021 28541720 | Layanan Reservasi Cepat via WhatsApp
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Customer Booking Engine -->
+      <div class="booking-panel">
+        <div class="booking-header">
+          <span class="booking-header-title">Formulir Pemesanan Tiket &amp; Hotel</span>
+          <span class="pill-solid pill-hotel">RESPON CEPAT VIA WHATSAPP</span>
+        </div>
+
+        <div class="service-tabs" role="tablist">
+          <button type="button" class="service-tab-btn active" data-service="Tiket Pesawat" onclick="selectBookingService(this)">
+            Tiket Pesawat
+          </button>
+          <button type="button" class="service-tab-btn" data-service="Kereta Api (KAI)" onclick="selectBookingService(this)">
+            Kereta Api (KAI)
+          </button>
+          <button type="button" class="service-tab-btn" data-service="Reservasi Hotel" onclick="selectBookingService(this)">
+            Reservasi Hotel
+          </button>
+          <button type="button" class="service-tab-btn" data-service="Rombongan / Dinas" onclick="selectBookingService(this)">
+            Rombongan / Dinas
+          </button>
+        </div>
+
+        <form id="customer-booking-form" class="booking-form-body" onsubmit="sendBookingToWhatsApp(event)">
+          <input type="hidden" id="bf-service" value="Tiket Pesawat" />
+
+          <div class="form-grid-2">
+            <div class="field-wrap">
+              <label for="bf-cust-type">Kategori Pemesan</label>
+              <select id="bf-cust-type" onchange="updateBookingPreview()">
+                <option value="Perorangan / Umum">Perorangan / Umum</option>
+                <option value="Korporat / Instansi (Faktur INV A)">Korporat / Instansi (Faktur INV A)</option>
+                <option value="Korporat Sub-Unit (Faktur INV D)">Korporat Sub-Unit (Faktur INV D)</option>
+              </select>
+            </div>
+            <div class="field-wrap">
+              <label for="bf-company">Nama Perusahaan / Instansi (Jika Korporat)</label>
+              <input type="text" id="bf-company" placeholder="Contoh: BNPB / KKP / PT Maju Bersama" oninput="updateBookingPreview()" />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="field-wrap">
+              <label for="bf-pic">Nama Pemesan (PIC)</label>
+              <input type="text" id="bf-pic" placeholder="Masukkan nama lengkap Anda" required oninput="updateBookingPreview()" />
+            </div>
+            <div class="field-wrap">
+              <label for="bf-phone">Nomor WhatsApp / Telepon Aktif</label>
+              <input type="tel" id="bf-phone" placeholder="0812xxxxxxx" required oninput="updateBookingPreview()" />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="field-wrap">
+              <label id="lbl-origin" for="bf-origin">Kota / Bandara / Stasiun Asal</label>
+              <input type="text" id="bf-origin" list="station-airport-list" placeholder="Contoh: Jakarta (CGK / GMR)" required oninput="updateBookingPreview()" />
+            </div>
+            <div class="field-wrap">
+              <label id="lbl-dest" for="bf-dest">Kota / Bandara / Stasiun Tujuan</label>
+              <input type="text" id="bf-dest" list="station-airport-list" placeholder="Contoh: Denpasar (DPS) / Bandung (BD)" required oninput="updateBookingPreview()" />
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="field-wrap">
+              <label id="lbl-date-go" for="bf-date">Tanggal Berangkat</label>
+              <input type="date" id="bf-date" required oninput="updateBookingPreview()" />
+            </div>
+            <div class="field-wrap">
+              <label for="bf-airline">Maskapai / Kereta / Pilihan</label>
+              <input type="text" id="bf-airline" list="carrier-list" placeholder="Garuda, Batik, KAI, dll." oninput="updateBookingPreview()" />
+            </div>
+            <div class="field-wrap">
+              <label for="bf-qty">Jumlah (Org)</label>
+              <input type="number" id="bf-qty" value="1" min="1" max="200" required oninput="updateBookingPreview()" />
+            </div>
+          </div>
+
+          <div class="field-wrap" style="margin-bottom:12px;">
+            <label for="bf-passengers">Daftar Nama Penumpang (Sesuai KTP/Paspor — pisahkan dengan baris baru jika rombongan)</label>
+            <textarea id="bf-passengers" rows="3" placeholder="1. MR BUDI SANTOSO&#10;2. MRS SITI AMINAH" required oninput="updateBookingPreview()"></textarea>
+          </div>
+
+          <div class="field-wrap">
+            <label for="bf-notes">Catatan Jadwal / Jam Keberangkatan / Kelas Kursi</label>
+            <input type="text" id="bf-notes" placeholder="Contoh: Jadwal pagi sekitar jam 08:00 - 10:00 WIB, Kelas Eksekutif" oninput="updateBookingPreview()" />
+          </div>
+
+          <div class="wa-preview-box">
+            <div class="wa-preview-title">
+              <span>PRATINJAU PESAN PEMESANAN RESMI</span>
+              <span class="mono-code">FORMAT HANI WISATA</span>
+            </div>
+            <div id="bf-preview-text" class="wa-preview-text"></div>
+          </div>
+
+          <div class="booking-actions">
+            <button type="submit" class="btn-whatsapp-emerald" style="flex:1;">
+              Kirim Pesanan via WhatsApp
+            </button>
+            <button type="button" class="btn-outline" onclick="copyBookingText()">
+              Salin Format Pesan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <datalist id="station-airport-list">
+    <option value="Jakarta - Soekarno Hatta (CGK)"></option>
+    <option value="Jakarta - Halim Perdanakusuma (HLP)"></option>
+    <option value="Jakarta - Stasiun Gambir (GMR)"></option>
+    <option value="Bandung - Stasiun Bandung (BD)"></option>
+    <option value="Surabaya - Juanda (SUB)"></option>
+    <option value="Surabaya - Stasiun Gubeng (SGU)"></option>
+    <option value="Bali / Denpasar - Ngurah Rai (DPS)"></option>
+    <option value="Medan - Kualanamu (KNO)"></option>
+    <option value="Yogyakarta - YIA / Stasiun Tugu (YK)"></option>
+    <option value="Balikpapan - Sultan Aji Muhammad Sulaiman (BPN)"></option>
+    <option value="Makassar - Sultan Hasanuddin (UPG)"></option>
+    <option value="Semarang - Ahmad Yani (SRG) / Tawang"></option>
+    <option value="Palembang - Sultan Mahmud Badaruddin II (PLM)"></option>
+    <option value="Batam - Hang Nadim (BTH)"></option>
+    <option value="Singapura - Changi (SIN)"></option>
+    <option value="Kuala Lumpur - KLIA (KUL)"></option>
+  </datalist>
+
+  <datalist id="carrier-list">
+    <option value="Garuda Indonesia (GA)"></option>
+    <option value="Batik Air (ID)"></option>
+    <option value="Citilink (QG)"></option>
+    <option value="Pelita Air (IP)"></option>
+    <option value="Lion Air (JT)"></option>
+    <option value="Super Air Jet (IU)"></option>
+    <option value="KAI Parahyangan Eksekutif"></option>
+    <option value="KAI Argo Bromo Anggrek / Taksaka"></option>
+    <option value="Kereta Cepat Whoosh"></option>
+  </datalist>
+
+  <!-- Section: Popular Routes & Instant Selection -->
+  <section id="rute-populer" class="section-wrap section-border">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Rute Perjalanan Dinas &amp; Korporat Populer</h2>
+      </div>
+      <div>
+        <p class="section-subtitle">
+          Pilih salah satu rute di bawah ini untuk mengisi formulir pemesanan di atas secara otomatis sesuai kebutuhan perjalanan Anda.
+        </p>
+      </div>
+    </div>
+
+    <div class="routes-table-wrap">
+      <table class="routes-ledger">
+        <thead>
+          <tr>
+            <th style="width:130px;">Kategori</th>
+            <th>Rute Keberangkatan &amp; Tujuan</th>
+            <th>Maskapai / Layanan Tersedia</th>
+            <th>Jadwal &amp; Fleksibilitas</th>
+            <th style="width:150px; text-align:right;">Aksi Cepat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill-solid pill-plane">PESAWAT</span></td>
+            <td><strong>Jakarta (CGK) &ndash; Denpasar Bali (DPS)</strong></td>
+            <td>Garuda Indonesia, Batik Air, Citilink, Pelita Air, Super Air Jet</td>
+            <td>Penerbangan pagi, siang, dan malam setiap hari</td>
+            <td style="text-align:right;">
+              <button type="button" class="btn-outline" style="padding:6px 12px; font-size:12px;" onclick="quickSelectRoute('Tiket Pesawat', 'Jakarta (CGK)', 'Denpasar Bali (DPS)', 'Garuda Indonesia / Batik Air')">
+                Pilih Rute
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="pill-solid pill-plane">PESAWAT</span></td>
+            <td><strong>Jakarta (CGK) &ndash; Surabaya (SUB)</strong></td>
+            <td>Garuda Indonesia, Batik Air, Citilink, Pelita Air, Lion Air</td>
+            <td>Tersedia jadwal penerbangan setiap jam</td>
+            <td style="text-align:right;">
+              <button type="button" class="btn-outline" style="padding:6px 12px; font-size:12px;" onclick="quickSelectRoute('Tiket Pesawat', 'Jakarta (CGK)', 'Surabaya (SUB)', 'Garuda Indonesia / Citilink')">
+                Pilih Rute
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="pill-solid pill-plane">PESAWAT</span></td>
+            <td><strong>Jakarta (CGK) &ndash; Balikpapan (BPN) / Makassar (UPG)</strong></td>
+            <td>Garuda Indonesia, Batik Air, Citilink, Super Air Jet</td>
+            <td>Rute perjalanan dinas proyek, pertambangan &amp; instansi</td>
+            <td style="text-align:right;">
+              <button type="button" class="btn-outline" style="padding:6px 12px; font-size:12px;" onclick="quickSelectRoute('Tiket Pesawat', 'Jakarta (CGK)', 'Balikpapan (BPN)', 'Batik Air / Garuda Indonesia')">
+                Pilih Rute
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="pill-solid pill-plane">PESAWAT</span></td>
+            <td><strong>Jakarta (CGK) &ndash; Medan Kualanamu (KNO)</strong></td>
+            <td>Garuda Indonesia, Batik Air, Citilink, Pelita Air, Super Air Jet</td>
+            <td>Penerbangan langsung (direct flight) harian</td>
+            <td style="text-align:right;">
+              <button type="button" class="btn-outline" style="padding:6px 12px; font-size:12px;" onclick="quickSelectRoute('Tiket Pesawat', 'Jakarta (CGK)', 'Medan Kualanamu (KNO)', 'Garuda Indonesia / Batik Air')">
+                Pilih Rute
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="pill-solid pill-train">KERETA API</span></td>
+            <td><strong>Stasiun Gambir (GMR) &ndash; Bandung (BD)</strong></td>
+            <td>KAI Parahyangan Eksekutif / Panoramic / Priority</td>
+            <td>Cocok untuk perjalanan perorangan maupun grup instansi</td>
+            <td style="text-align:right;">
+              <button type="button" class="btn-outline" style="padding:6px 12px; font-size:12px;" onclick="quickSelectRoute('Kereta Api (KAI)', 'Stasiun Gambir (GMR)', 'Stasiun Bandung (BD)', 'KAI Parahyangan Eksekutif')">
+                Pilih Rute
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="pill-solid pill-train">KERETA API</span></td>
+            <td><strong>Stasiun Gambir (GMR) &ndash; Yogyakarta (YK) / Surabaya (SGU)</strong></td>
+            <td>KAI Taksaka, Argo Lawu, Argo Dwipangga, Argo Bromo Anggrek</td>
+            <td>Kelas Eksekutif &amp; Luxury Sleeper</td>
+            <td style="text-align:right;">
+              <button type="button" class="btn-outline" style="padding:6px 12px; font-size:12px;" onclick="quickSelectRoute('Kereta Api (KAI)', 'Stasiun Gambir (GMR)', 'Yogyakarta (YK)', 'KAI Taksaka / Argo Dwipangga')">
+                Pilih Rute
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section: Services -->
+  <section id="layanan" class="section-wrap section-border">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Layanan Perjalanan Hani Wisata</h2>
+      </div>
+      <div>
+        <p class="section-subtitle">
+          Dukungan menyeluruh untuk kebutuhan perjalanan dinas instansi pemerintah, korporasi swasta, maupun pelanggan perorangan dengan standar pelayanan responsif.
+        </p>
+      </div>
+    </div>
+
+    <div class="service-ledger">
+      <div class="service-item">
+        <div><span class="service-num">01</span></div>
+        <div>
+          <div style="font-size:16px; font-weight:700; color:var(--ink-primary);">Tiket Pesawat Domestik &amp; Internasional</div>
+          <div style="font-size:12.5px; color:var(--ink-muted); font-weight:600;">Penerbitan Cepat &amp; Bantuan Reschedule</div>
+        </div>
+        <div style="font-size:13.8px; color:var(--ink-secondary);">
+          Pemesanan tiket seluruh maskapai penerbangan dengan kepastian kode booking resmi, pemilihan kursi, bagasi tambahan, serta bantuan perubahan jadwal apabila agenda dinas berubah.
+        </div>
+        <div class="mono-code" style="font-size:12px; font-weight:600; color:var(--brand-navy); text-align:right;">DOMESTIK &amp; INTL</div>
+      </div>
+
+      <div class="service-item">
+        <div><span class="service-num">02</span></div>
+        <div>
+          <div style="font-size:16px; font-weight:700; color:var(--ink-primary);">Tiket Kereta Api Eksekutif (KAI)</div>
+          <div style="font-size:12.5px; color:var(--ink-muted); font-weight:600;">Perorangan &amp; Rombongan Satu Faktur</div>
+        </div>
+        <div style="font-size:13.8px; color:var(--ink-secondary);">
+          Kemudahan pemesanan tiket kereta api antarkota untuk tim maupun rombongan kerja. Seluruh anggota rombongan dapat dirangkum dalam satu faktur resmi yang rapi dan jelas.
+        </div>
+        <div class="mono-code" style="font-size:12px; font-weight:600; color:var(--brand-navy); text-align:right;">KAI EKSEKUTIF</div>
+      </div>
+
+      <div class="service-item">
+        <div><span class="service-num">03</span></div>
+        <div>
+          <div style="font-size:16px; font-weight:700; color:var(--ink-primary);">Reservasi Hotel &amp; Akomodasi Bisnis</div>
+          <div style="font-size:12.5px; color:var(--ink-muted); font-weight:600;">Jaringan Hotel Seluruh Kota Besar</div>
+        </div>
+        <div style="font-size:13.8px; color:var(--ink-secondary);">
+          Pemesanan kamar hotel berbintang untuk kegiatan kunjungan kerja, seminar, maupun perjalanan dinas dengan harga korporat dan bukti voucher menginap instan.
+        </div>
+        <div class="mono-code" style="font-size:12px; font-weight:600; color:var(--brand-navy); text-align:right;">VOUCHER HOTEL</div>
+      </div>
+
+      <div class="service-item">
+        <div><span class="service-num">04</span></div>
+        <div>
+          <div style="font-size:16px; font-weight:700; color:var(--ink-primary);">Layanan Faktur Korporat (INV A &amp; INV D)</div>
+          <div style="font-size:12.5px; color:var(--ink-muted); font-weight:600;">Administrasi Tagihan Terstruktur</div>
+        </div>
+        <div style="font-size:13.8px; color:var(--ink-secondary);">
+          Bagi mitra perusahaan dan instansi, Hani Wisata menyediakan dokumen faktur resmi (Kode A untuk instansi induk dan Kode D untuk sub-unit kerja) lengkap dengan rekapitulasi berkala.
+        </div>
+        <div class="mono-code" style="font-size:12px; font-weight:600; color:var(--brand-navy); text-align:right;">KORPORAT &amp; BUMN</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Procedure & Official Bank Account -->
+  <section id="prosedur" class="section-wrap">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Alur Pemesanan &amp; Informasi Pembayaran Resmi</h2>
+      </div>
+      <div>
+        <p class="section-subtitle">
+          Empat tahapan praktis pemesanan tiket serta rincian rekening resmi Hani Wisata untuk menjamin keamanan transaksi pelanggan.
+        </p>
+      </div>
+    </div>
+
+    <div class="procedure-grid">
+      <div class="steps-box">
+        <div class="step-row">
+          <div><span class="service-num">01</span></div>
+          <div>
+            <div style="font-weight:700; color:var(--ink-primary);">Isi Formulir Rute &amp; Daftar Penumpang</div>
+            <div style="font-size:13px; color:var(--ink-secondary);">Masukkan rute keberangkatan, tanggal perjalanan, maskapai/kereta pilihan, serta nama lengkap penumpang pada formulir di atas lalu kirim via WhatsApp.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div><span class="service-num">02</span></div>
+          <div>
+            <div style="font-weight:700; color:var(--ink-primary);">Konfirmasi Jadwal &amp; Ketersediaan Kursi</div>
+            <div style="font-size:13px; color:var(--ink-secondary);">Tim Ticketing Hani Wisata akan mengirimkan opsi jadwal penerbangan/kereta terbaik beserta rincian harga resmi.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div><span class="service-num">03</span></div>
+          <div>
+            <div style="font-weight:700; color:var(--ink-primary);">Penerbitan E-Ticket &amp; Kode Booking Resmi</div>
+            <div style="font-size:13px; color:var(--ink-secondary);">Setelah jadwal disetujui, tiket langsung diterbitkan dan dikirimkan kepada pemesan lengkap dengan kode booking dan nomor e-ticket.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div><span class="service-num">04</span></div>
+          <div>
+            <div style="font-weight:700; color:var(--ink-primary);">Penyelesaian Pembayaran / Faktur Korporat</div>
+            <div style="font-size:13px; color:var(--ink-secondary);">Pembayaran dilakukan melalui transfer ke rekening resmi Bank Mandiri kami atau melalui penagihan faktur sesuai tanggal jatuh tempo bagi mitra korporat.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bank-card">
+        <div style="font-size:11.5px; font-weight:700; color:#FBBF24; letter-spacing:0.04em; margin-bottom:8px;">
+          VERIFIKASI REKENING PEMBAYARAN RESMI
+        </div>
+        <div style="font-family:var(--font-brand); font-size:24px; font-weight:700; margin-bottom:14px;">
+          Hani Wisata
+        </div>
+        <div style="font-size:13px; color:#CBD5E1; margin-bottom:18px; line-height:1.6;">
+          Seluruh pembayaran faktur dan pemesanan tiket resmi Hani Wisata hanya ditujukan ke rekening berikut:
+        </div>
+
+        <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.16); border-radius:6px; padding:16px; margin-bottom:16px;">
+          <div style="font-size:12px; color:#94A3B8;">Nama Bank</div>
+          <div style="font-size:16px; font-weight:700; color:#FFFFFF; margin-bottom:10px;">BANK MANDIRI</div>
+
+          <div style="font-size:12px; color:#94A3B8;">Nomor Rekening</div>
+          <div class="mono-code" style="font-size:20px; font-weight:700; color:#FBBF24; margin-bottom:10px;">1290016512887</div>
+
+          <div style="font-size:12px; color:#94A3B8;">Atas Nama</div>
+          <div style="font-size:15px; font-weight:700; color:#FFFFFF;">ASEP RUSWANDI</div>
+        </div>
+
+        <div style="font-size:12px; color:#94A3B8;">
+          ** Pembayaran dengan cheque / giro baru berlaku setelah dana efektif diterima dalam rekening kami.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="kontak" class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <div style="font-family:var(--font-brand); font-size:24px; font-weight:700; color:#FFFFFF; margin-bottom:10px;">
+          Hani Wisata
+        </div>
+        <p class="footer-text" style="max-width:42ch;">
+          Mitra perjalanan dinas korporat, instansi pemerintah, dan pelanggan umum untuk pengadaan tiket penerbangan, kereta api eksekutif, serta reservasi hotel di seluruh Indonesia.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-title">KANTOR OPERASIONAL</div>
+        <p class="footer-text">
+          Gedung 88 Lantai 9A<br />
+          Kota Casablanca, Jakarta Selatan<br />
+          Telepon Kantor: <span class="mono-code" style="color:#FFFFFF;">021 28541720</span>
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-title">LAYANAN PELANGGAN &amp; RESERVASI</div>
+        <p class="footer-text">
+          Pemesanan Tiket Pesawat, KAI &amp; Hotel<br />
+          Rekening Resmi: <span class="mono-code" style="color:#FFFFFF;">Mandiri 1290016512887</span><br />
+          Atas Nama: <strong style="color:#FFFFFF;">ASEP RUSWANDI</strong>
+        </p>
+        <div style="margin-top:14px;">
+          <a href="#pesan-tiket" class="btn-primary-navy">Buat Pesanan Tiket</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>Hak Cipta &copy; 2026 Hani Wisata. Gedung 88 Lt. 9A Kota Casablanca, Jakarta Selatan.</span>
+      <span>Layanan Tiket &amp; Perjalanan Korporat Terpadu</span>
+    </div>
+  </footer>
+
+  <div id="toast-banner">Format pesanan berhasil disalin.</div>
+
+  <script>
+    // Nomor WhatsApp Admin/Ticketing Hani Wisata (Ganti nomor ini kapan saja dengan format kode negara 62)
+    const WA_ADMIN_NUMBER = "6281200000000";
+
+    function selectBookingService(btn) {
+      document.querySelectorAll(".service-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const service = btn.getAttribute("data-service") || "Tiket Pesawat";
+      document.getElementById("bf-service").value = service;
+
+      const lblOrigin = document.getElementById("lbl-origin");
+      const lblDest = document.getElementById("lbl-dest");
+      const inpOrigin = document.getElementById("bf-origin");
+      const inpDest = document.getElementById("bf-dest");
+
+      if (service === "Reservasi Hotel") {
+        lblOrigin.textContent = "Kota Tujuan Menginap";
+        inpOrigin.placeholder = "Contoh: Jakarta / Bandung / Bali";
+        lblDest.textContent = "Nama Hotel Pilihan";
+        inpDest.placeholder = "Contoh: Hotel Santika / Aston / Mercure";
+      } else if (service === "Kereta Api (KAI)") {
+        lblOrigin.textContent = "Stasiun Keberangkatan";
+        inpOrigin.placeholder = "Contoh: Stasiun Gambir (GMR)";
+        lblDest.textContent = "Stasiun Tujuan";
+        inpDest.placeholder = "Contoh: Stasiun Bandung (BD)";
+      } else {
+        lblOrigin.textContent = "Kota / Bandara Keberangkatan";
+        inpOrigin.placeholder = "Contoh: Jakarta (CGK)";
+        lblDest.textContent = "Kota / Bandara Tujuan";
+        inpDest.placeholder = "Contoh: Denpasar Bali (DPS)";
+      }
+
+      updateBookingPreview();
+    }
+
+    function composeBookingMessage() {
+      const service = document.getElementById("bf-service").value || "Tiket Pesawat";
+      const custType = document.getElementById("bf-cust-type").value || "Perorangan / Umum";
+      const company = document.getElementById("bf-company").value.trim();
+      const pic = document.getElementById("bf-pic").value.trim() || "-";
+      const phone = document.getElementById("bf-phone").value.trim() || "-";
+      const origin = document.getElementById("bf-origin").value.trim() || "-";
+      const dest = document.getElementById("bf-dest").value.trim() || "-";
+      const dateGo = document.getElementById("bf-date").value || "-";
+      const airline = document.getElementById("bf-airline").value.trim() || "Sesuai ketersediaan terbaik";
+      const qty = document.getElementById("bf-qty").value || "1";
+      const passengers = document.getElementById("bf-passengers").value.trim() || "-";
+      const notes = document.getElementById("bf-notes").value.trim() || "-";
+
+      const lines = [
+        "Halo Admin *Hani Wisata*, saya ingin melakukan pemesanan perjalanan:",
+        "",
+        `*Layanan*: ${service}`,
+        `*Kategori*: ${custType}`,
+        company ? `*Perusahaan/Instansi*: ${company}` : null,
+        `*Nama Pemesan (PIC)*: ${pic}`,
+        `*Kontak WA*: ${phone}`,
+        `*Rute / Lokasi*: ${origin} -> ${dest}`,
+        `*Tanggal*: ${dateGo}`,
+        `*Maskapai / Kereta / Hotel*: ${airline}`,
+        `*Jumlah Penumpang (QTY)*: ${qty} Orang`,
+        "",
+        "*Daftar Nama Penumpang*:",
+        passengers,
+        "",
+        `*Catatan Tambahan*: ${notes}`,
+        "",
+        "Mohon informasi ketersediaan jadwal dan rincian harganya. Terima kasih."
+      ].filter(x => x !== null);
+
+      return lines.join("\n");
+    }
+
+    function updateBookingPreview() {
+      const previewEl = document.getElementById("bf-preview-text");
+      if (previewEl) {
+        previewEl.textContent = composeBookingMessage();
+      }
+    }
+
+    function sendBookingToWhatsApp(e) {
+      e.preventDefault();
+      const msg = composeBookingMessage();
+      const url = `https://wa.me/${WA_ADMIN_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    function copyBookingText() {
+      const msg = composeBookingMessage();
+      navigator.clipboard.writeText(msg).then(() => {
+        const banner = document.getElementById("toast-banner");
+        banner.style.display = "block";
+        setTimeout(() => {
+          banner.style.display = "none";
+        }, 2600);
+      });
+    }
+
+    function quickSelectRoute(serviceName, origin, dest, carrier) {
+      const tabs = document.querySelectorAll(".service-tab-btn");
+      tabs.forEach(t => {
+        if (t.getAttribute("data-service") === serviceName) {
+          selectBookingService(t);
+        }
+      });
+      document.getElementById("bf-origin").value = origin;
+      document.getElementById("bf-dest").value = dest;
+      document.getElementById("bf-airline").value = carrier;
+      updateBookingPreview();
+      document.getElementById("pesan-tiket").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("bf-pic").focus();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().slice(0, 10);
+      document.getElementById("bf-date").value = today;
+      updateBookingPreview();
+    });
+  </script>
+</body>
+</html>
